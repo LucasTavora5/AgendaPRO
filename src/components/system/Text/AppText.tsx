@@ -1,33 +1,40 @@
+import { DesignTokens } from '@/styles/tokens/design.tokens';
 import React from 'react';
-import { Text, TextProps, TextStyle } from 'react-native';
-import { DesignTokens } from '../../design/tokens/design.tokens';
+import { Text, TextProps } from 'react-native';
+import { styles } from './styles';
 
-type TypographyVariant = keyof typeof DesignTokens.typography;
+type Variant =
+  | 'h1'
+  | 'h2'
+  | 'body'
+  | 'caption';
 
-interface AppTextProps extends Omit<TextProps, 'style'> {
-  variant?: TypographyVariant;
+interface AppTextProps extends TextProps {
+  variant?: Variant;
   color?: keyof typeof DesignTokens.colors;
+  children: React.ReactNode;
 }
 
-export const AppText: React.FC<AppTextProps> = ({
+const AppText: React.FC<AppTextProps> = ({
   variant = 'body',
   color = 'textPrimary',
+  style,
   children,
   ...props
 }) => {
-  const typography = DesignTokens.typography[variant];
-  const textColor = DesignTokens.colors[color];
-
-  const style: TextStyle = {
-    fontSize: typography.fontSize,
-    lineHeight: typography.lineHeight,
-    fontWeight: typography.fontWeight,
-    color: textColor,
-  };
-
   return (
-    <Text style={style} {...props}>
+    <Text
+      style={[
+        styles.base,
+        styles[variant],
+        { color: DesignTokens.colors[color] },
+        style,
+      ]}
+      {...props}
+    >
       {children}
     </Text>
   );
 };
+
+export default AppText;

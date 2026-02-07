@@ -44,6 +44,9 @@ export const DesignTokens = {
   },
 
   typography: {
+   
+    fontFamily: "System",
+
     display: {
       fontSize: 32,
       lineHeight: 38,

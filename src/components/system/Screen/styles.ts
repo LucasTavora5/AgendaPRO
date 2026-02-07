@@ -1,13 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { DesignTokens } from '../../../../design/tokens/design.tokens';
+import { DesignTokens } from '../../../styles/tokens/design.tokens';
 
-export const screenStyles = StyleSheet.create({
-  container: {
+export const styles = StyleSheet.create({
+  safe: {
     flex: 1,
     backgroundColor: DesignTokens.colors.background,
-    padding: DesignTokens.spacing.md,
   },
-  safeArea: {
+  container: {
     flex: 1,
   },
 });
